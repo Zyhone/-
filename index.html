@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>传承千年文脉 - 思南县非遗技艺展示</title>
+    <!-- 引入字体图标 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* 全局样式重置 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      }
+
+      /* 滚动平滑 */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* 主体样式 */
+      body {
+        color: #333;
+        background-color: #f8f5f2;
+      }
+
+      /* 导航栏 */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 70px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #d13838; /* 土家族红 */
+      }
+
+      .logo i {
+        font-size: 28px;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-menu a:hover {
+        color: #d13838;
+      }
+
+      .nav-menu a.active {
+        color: #d13838;
+        border-bottom: 2px solid #d13838;
+      }
+
+      /* 移动端菜单按钮 */
+      .menu-btn {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      /* 轮播首屏 - 核心修改：2/3屏幕高度 + 左右缩略图布局 */
+      .hero {
+        height: calc(2 / 3 * 100vh); /* 总高度占屏幕2/3 */
+        position: relative;
+        overflow: hidden;
+        margin-top: 70px; /* 导航栏高度偏移 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px;
+      }
+
+      .carousel {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      /* 左右缩略图容器 */
+      .carousel-thumbnail {
+        width: 15%;
+        height: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s, transform 0.3s;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .carousel-thumbnail:hover {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+
+      .thumbnail-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.8);
+      }
+
+      /* 中间主图容器 */
+      .carousel-main {
+        width: 65%;
+        height: 100%;
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+
+      .carousel-slide.active {
+        opacity: 1;
+      }
+
+      .main-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* 主图遮罩 */
+      .carousel-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+      }
+
+      /* 文字和按钮 - 右下角 */
+      .carousel-caption {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        color: white;
+        text-align: right;
+        z-index: 10;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .carousel-caption h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      .hero-btn {
+        padding: 12px 30px;
+        background-color: #d13838;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .hero-btn:hover {
+        background-color: #b02828;
+        transform: translateY(-3px);
+      }
+
+      /* 轮播指示器（底部） */
+      .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .indicator.active {
+        background-color: white;
+        transform: scale(1.2);
+      }
+
+      /* 非遗概述 - 修改为文字+视频+文字（视频占至少1/2，文字在上下） */
+      .overview {
+        max-width: 1200px;
+        margin: 80px auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 36px;
+        color: #d13838;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .overview-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+      }
+
+      .overview-text {
+        width: 100%;
+        max-width: 800px;
+        line-height: 1.8;
+        font-size: 16px;
+      }
+
+      .overview-text p {
+        margin-bottom: 20px;
+      }
+
+      /* 视频容器样式 - 至少占1/2宽度 + 宽屏比例（16:9） */
+      .overview-video {
+        width: 100%;
+        min-width: 50%;
+        max-width: 1000px; /* 加宽最大宽度，让视频更宽 */
+        aspect-ratio: 16/9; /* 16:9宽屏比例，实现水平长、竖直窄 */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        cursor: pointer;
+      }
+
+      .overview-video video {
+        width: 100%;
+        height: 100%; /* 配合aspect-ratio，视频填满容器 */
+        display: block;
+        object-fit: cover; /* 保证视频内容适配容器比例 */
+      }
+
+      /* 视频播放按钮覆盖层 */
+      .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s;
+      }
+
+      .video-play-btn {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: #d13838;
+        transition: transform 0.3s;
+      }
+
+      .overview-video:hover .video-play-btn {
+        transform: scale(1.1);
+      }
+
+      /* 视频控制栏样式 */
+      .video-controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .overview-video:hover .video-controls {
+        opacity: 1;
+      }
+
+      /* 进度条样式 */
+      .progress-container {
+        width: 100%;
+        height: 5px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background-color: #d13838;
+        border-radius: 3px;
+        width: 0%;
+      }
+
+      /* 音量控制样式 */
+      .volume-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 150px;
+      }
+
+      .volume-control input {
+        width: 100%;
+        accent-color: #d13838;
+      }
+
+      /* 核心非遗展示 - 修改为两行两列布局 */
+      .heritage {
+        background-color: white;
+        padding: 80px 0;
+      }
+
+      .heritage-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .heritage-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 固定两列 */
+        gap: 40px; /* 加大间距 */
+        margin-top: 40px;
+      }
+
+      .heritage-card {
+        background-color: #f8f5f2;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .heritage-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .heritage-card-img {
+        height: 250px; /* 增加图片高度 */
+        overflow: hidden;
+      }
+
+      .heritage-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+
+      .heritage-card:hover .heritage-card-img img {
+        transform: scale(1.1);
+      }
+
+      .heritage-card-content {
+        padding: 30px; /* 增加内边距 */
+      }
+
+      .heritage-card-title {
+        font-size: 24px;
+        color: #d13838;
+        margin-bottom: 15px;
+        font-weight: 700;
+      }
+
+      .heritage-card-desc {
+        line-height: 1.8;
+        font-size: 16px;
+        color: #555;
+      }
+
+      /* 非遗传承人 */
+      .inheritor {
+        padding: 80px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .inheritor-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .inheritor-card {
+        text-align: center;
+        background-color: white;
+        padding: 30px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .inheritor-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .inheritor-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 20px;
+        border: 3px solid #d13838;
+      }
+
+      .inheritor-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .inheritor-name {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .inheritor-skill {
+        color: #d13838;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+
+      .inheritor-desc {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      /* 新增：大力宣传模块 */
+      .promotion {
+        padding: 80px 0;
+        background-color: white;
+      }
+
+      .promotion-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .promotion-content {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .social-media {
+        display: flex;
+        gap: 30px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .social-item {
+        text-align: center;
+        width: 250px;
+      }
+
+      .social-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .social-item:hover .social-img {
+        transform: scale(1.05);
+      }
+
+      .social-desc {
+        margin-top: 15px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .promotion-video-container {
+        width: 100%;
+        max-width: 1000px;
+        aspect-ratio: 16/9;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        cursor: pointer;
+      }
+
+      #promotion-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* 传承与保护 - 新增图片样式 */
+      .protection {
+        background-color: #f0e9e3;
+        padding: 80px 0;
+      }
+
+      .protection-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .protection-list {
+        display: grid;
+        grid-template-columns: 1fr 300px 1fr; /* 三列布局，中间列固定宽度放视频 */
+        gap: 30px;
+        margin-top: 40px;
+        align-items: center;
+      }
+
+      .protection-col {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .protection-item {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .protection-item-img {
+        width: 100%;
+        height: 180px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .protection-item-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      .protection-item:hover .protection-item-img img {
+        transform: scale(1.05);
+      }
+
+      .protection-video-container {
+        width: 100%;
+        aspect-ratio: 9/16; /* 竖版视频比例（水平窄，竖直宽） */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        cursor: pointer;
+      }
+
+      .protection-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .protection-item i {
+        font-size: 40px;
+        color: #d13838;
+        margin-bottom: 10px;
+      }
+
+      .protection-item-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .protection-item-desc {
+        line-height: 1.7;
+        color: #666;
+        flex: 1;
+      }
+
+      /* 互动板块 */
+      .interaction {
+        padding: 80px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .quiz-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .quiz-question {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .quiz-option {
+        padding: 12px 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      .quiz-option:hover {
+        background-color: #f8f5f2;
+      }
+
+      /* 新增：选中选项深色样式 */
+      .quiz-option.selected {
+        background-color: #333;
+        color: white;
+        border-color: #333;
+      }
+
+      .quiz-option.correct {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+      }
+
+      .quiz-option.wrong {
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+        color: #721c24;
+      }
+
+      #quiz-btn {
+        padding: 10px 25px;
+        background-color: #d13838;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #quiz-btn:hover {
+        background-color: #b02828;
+      }
+
+      #quiz-result {
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      /* 页脚 */
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-col h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-col h3::after {
+        content: "";
+        display: block;
+        width: 50px;
+        height: 2px;
+        background-color: #d13838;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      .footer-col p,
+      .footer-col a {
+        color: #ccc;
+        line-height: 1.8;
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      .footer-col a:hover {
+        color: #d13838;
+      }
+
+      .footer-col .social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .footer-col .social a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #444;
+        border-radius: 50%;
+        font-size: 18px;
+        transition: background-color 0.3s;
+      }
+
+      .footer-col .social a:hover {
+        background-color: #d13838;
+        color: white;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        font-size: 14px;
+        color: #ccc;
+      }
+
+      /* 动画 */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 响应式适配 */
+      @media (max-width: 768px) {
+        .nav-menu {
+          position: fixed;
+          top: 70px;
+          left: -100%;
+          width: 100%;
+          height: calc(100vh - 70px);
+          background-color: white;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 30px;
+          transition: left 0.3s;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .menu-btn {
+          display: block;
+        }
+
+        /* 移动端轮播布局调整 */
+        .carousel-thumbnail {
+          display: none; /* 移动端隐藏缩略图 */
+        }
+
+        .carousel-main {
+          width: 100%;
+        }
+
+        .carousel-caption h1 {
+          font-size: 24px;
+        }
+
+        .section-title {
+          font-size: 30px;
+        }
+
+        /* 核心非遗移动端布局 */
+        .heritage-list {
+          grid-template-columns: 1fr; /* 移动端单列布局 */
+        }
+
+        /* 移动端视频布局调整 - 占满宽度 + 保持16:9比例 */
+        .overview-video {
+          width: 100%;
+          min-width: 100%;
+          max-width: 100%;
+        }
+
+        /* 移动端视频控制栏调整 */
+        .volume-control {
+          width: 120px;
+        }
+
+        /* 大力宣传模块响应式 */
+        .social-media {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .social-item {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .promotion-video-container {
+          width: 100%;
+        }
+
+        /* 传承保护移动端布局 */
+        .protection-list {
+          grid-template-columns: 1fr; /* 移动端单列布局 */
+        }
+
+        .protection-video-container {
+          aspect-ratio: 16/9; /* 移动端视频改为横版 */
+        }
+
+        /* 传承保护移动端图片适配 */
+        .protection-item-img {
+          height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 导航栏 -->
+    <header>
+      <div class="nav-container">
+        <div class="logo">
+          <i class="fa-solid fa-masks-theater"></i>
+          <span>思南非遗</span>
+        </div>
+        <div class="nav-menu">
+          <a href="#home" class="active">首页</a>
+          <a href="#overview">非遗概述</a>
+          <a href="#heritage">核心非遗</a>
+          <a href="#inheritor">传承人</a>
+          <a href="#promotion">大力宣传</a>
+          <a href="#protection">传承保护</a>
+          <a href="#interaction">互动问答</a>
+        </div>
+        <div class="menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </header>
+
+    <!-- 轮播首屏 - 核心修改区域 -->
+    <section class="hero" id="home">
+      <div class="carousel">
+        <!-- 左侧缩略图（上一张） -->
+        <div class="carousel-thumbnail prev-thumbnail" id="prev-thumbnail">
+          <img src="image/首4.jpg" alt="上一张" class="thumbnail-img" />
+        </div>
+
+        <!-- 中间主图区域 -->
+        <div class="carousel-main">
+          <!-- 轮播图片 -->
+          <div class="carousel-slide active">
+            <img src="image/首1.jpg" alt="思南乌江风光" class="main-img" />
+            <div class="carousel-overlay"></div>
+          </div>
+          <div class="carousel-slide">
+            <img src="image/首2.jpg" alt="思南非遗表演" class="main-img" />
+            <div class="carousel-overlay"></div>
+          </div>
+          <div class="carousel-slide">
+            <img src="image/首3.jpg" alt="思南巡游活动" class="main-img" />
+            <div class="carousel-overlay"></div>
+          </div>
+          <div class="carousel-slide">
+            <img src="image/首4.jpg" alt="思南古城风貌" class="main-img" />
+            <div class="carousel-overlay"></div>
+          </div>
+
+          <!-- 文字和按钮 -->
+          <div class="carousel-caption">
+            <h1>思南非遗 · 千年文脉传承</h1>
+            <button class="hero-btn" onclick="scrollToSection('heritage')">
+              探索非遗之美
+            </button>
+          </div>
+
+          <!-- 轮播指示器 -->
+          <div class="carousel-indicators">
+            <div class="indicator active" data-index="0"></div>
+            <div class="indicator" data-index="1"></div>
+            <div class="indicator" data-index="2"></div>
+            <div class="indicator" data-index="3"></div>
+          </div>
+        </div>
+
+        <!-- 右侧缩略图（下一张） -->
+        <div class="carousel-thumbnail next-thumbnail" id="next-thumbnail">
+          <img src="image/首1.jpg" alt="下一张" class="thumbnail-img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 非遗概述 - 文字+视频+文字（视频占至少1/2，文字在上下） -->
+    <section class="overview" id="overview">
+      <h2 class="section-title">思南非遗 · 千年积淀</h2>
+      <div class="overview-content">
+        <!-- 上方文字 -->
+        <div class="overview-text">
+          <p>
+            思南县，贵州省铜仁市辖县，位于贵州省东北部、铜仁市西部，总面积2230.5平方千米。乌江穿城而过，素有“黔中首郡·乌江明珠”之称。作为土家族、苗族、仡佬族等多民族聚居区，思南的非物质文化遗产是各民族智慧的结晶，承载着地域历史与民族记忆。
+          </p>
+          <p>
+            据悉，思南目前有国家级非遗项目1个(思南土家花灯戏)；省级非遗项目3个(思南傩戏、思南花烛制作技艺等)；市级非遗项目13个。
+          </p>
+          <p>
+            这些非遗技艺不仅是思南的文化符号，更是乌江流域民族文化的鲜活载体，从节庆表演到手工技艺，从口头文学到民俗礼仪，处处彰显着思南人民对生活的热爱与对传统的坚守。非物质文化遗产承载着先祖的智慧、蕴含着祖辈的匠心，更彰显着文明的辉煌。思南的非物质文化遗产种类繁多、历史悠久，在时光的洗礼下焕发出新时代的光芒，正持续融汇于现代生活之中，走向更加灿烂的未来。
+          </p>
+        </div>
+
+        <!-- 中间视频（至少占1/2宽度 + 16:9宽屏比例） -->
+        <div class="overview-video" id="overview-video">
+          <video id="heritage-video" poster="image/视频.jpg" preload="none">
+            <source src="video/介绍.mp4" type="video/mp4" />
+            您的浏览器不支持HTML5视频播放
+          </video>
+          <div class="video-overlay" id="video-overlay">
+            <div class="video-play-btn">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+          <!-- 视频控制栏 -->
+          <div class="video-controls">
+            <div class="progress-container" id="progress-container">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="volume-control">
+              <i class="fa-solid fa-volume-high" id="volume-icon"></i>
+              <input
+                type="range"
+                id="volume-slider"
+                min="0"
+                max="1"
+                step="0.1"
+                value="1"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心非遗展示 -->
+    <section class="heritage" id="heritage">
+      <div class="heritage-container">
+        <h2 class="section-title">核心非遗技艺</h2>
+        <div class="heritage-list">
+          <!-- 土家花灯 -->
+          <div class="heritage-card">
+            <div class="heritage-card-img">
+              <img src="image/花灯.jpg" alt="思南土家花灯" />
+            </div>
+            <div class="heritage-card-content">
+              <h3 class="heritage-card-title">思南土家花灯戏</h3>
+              <p class="heritage-card-desc">
+                思南土家花灯戏是国家级非物质文化遗产，距今已有600余年历史，被誉为"中国花灯活化石"。它是集歌、舞、戏、乐为一体的综合性民间艺术，表演时"无灯不歌，无灯不舞"，具有浓郁的土家族特色。
+                其表演形式生动活泼，以"丑、旦"两角为核心，丑角诙谐幽默，旦角含蓄娇羞，配合默契。传统剧目有《打头台》《送报条》《巧梳妆》等，内容多反映土家族人民的生产生活、爱情婚姻和节庆习俗。
+                近年来，思南县通过"花灯进校园""花灯进景区"等活动，让这一古老艺术焕发新活力，成为展现土家文化魅力的重要窗口。
+              </p>
+            </div>
+          </div>
+
+          <!-- 傩戏 -->
+          <div class="heritage-card">
+            <div class="heritage-card-img">
+              <img src="image/傩戏.jpg" alt="思南傩戏" />
+            </div>
+            <div class="heritage-card-content">
+              <h3 class="heritage-card-title">思南傩戏</h3>
+              <p class="heritage-card-desc">
+                思南傩戏是贵州省非物质文化遗产，是一种融合了祭祀、歌舞、戏剧的古老民间艺术，距今已有千年历史，保留了大量原始宗教文化元素。
+                思南傩戏表演时演员佩戴精美木雕面具，身着彩衣，通过"开红山""上刀梯""踩火炭"等惊险绝技，配合傩歌、傩舞，达到驱邪纳吉、祈福平安的目的。面具造型独特，色彩鲜明，分为文、武、老、少、男、女等类型，各有特定寓意。
+                思南傩戏不仅是一种艺术表演，更是研究西南少数民族原始宗教与民俗文化的重要活化石，其丰富的表演内容和独特的艺术形式，展现了古代先民的精神世界和文化智慧。
+              </p>
+            </div>
+          </div>
+
+          <!-- 花烛 -->
+          <div class="heritage-card">
+            <div class="heritage-card-img">
+              <img src="image/花烛.jpg" alt="思南花烛" />
+            </div>
+            <div class="heritage-card-content">
+              <h3 class="heritage-card-title">思南花烛制作技艺</h3>
+              <p class="heritage-card-desc">
+                思南花烛制作技艺是贵州省非物质文化遗产，历史悠久，工艺精湛，是土家族传统婚嫁、节庆的重要礼器，尤以"龙凤花烛"最具代表性。
+                其制作需经选蜡、熔蜡、塑形、彩绘、插花等20余道工序，全部由手工完成。烛身雕刻龙凤呈祥、花鸟鱼虫等吉祥纹样，色彩艳丽，造型精美，象征着喜庆吉祥、百年好合。思南花烛不仅是实用品，更是精美的艺术品，体现了土家族人民对美好生活的向往。
+                近年来，思南县通过建立花烛非遗工坊，培养传承人，将传统技艺与现代审美相结合，开发出系列文创产品，让这一古老技艺在新时代焕发新活力。
+              </p>
+            </div>
+          </div>
+
+          <!-- 剪纸 -->
+          <div class="heritage-card">
+            <div class="heritage-card-img">
+              <img src="image/剪纸.jpg" alt="思南剪纸" />
+            </div>
+            <div class="heritage-card-content">
+              <h3 class="heritage-card-title">思南剪纸技艺</h3>
+              <p class="heritage-card-desc">
+                思南剪纸是当地极具特色的民间艺术，历史悠久，风格独特，融合了土家族、苗族等多民族文化元素。其题材广泛，包括人物故事、花鸟鱼虫、吉祥纹样等，尤其擅长表现当地民俗风情和自然景观。
+                思南剪纸以其精细的刀法、夸张的造型和丰富的想象力著称，艺人无需打底稿，仅凭一把剪刀就能剪出复杂精美的图案。作品色彩鲜明，对比强烈，既保留了传统民间艺术的质朴，又融入了地域文化特色。
+                作为思南重要的非遗项目，剪纸技艺通过家族传承、师徒传授等方式代代相传，如今已成为展现思南民俗文化的重要载体，被广泛应用于装饰、节庆和文创产品中。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 非遗传承人 -->
+    <section class="inheritor" id="inheritor">
+      <h2 class="section-title">非遗守护人</h2>
+      <div class="inheritor-list">
+        <!-- 传承人1 -->
+        <div class="inheritor-card">
+          <div class="inheritor-avatar">
+            <img src="image/王.jpg" alt="王再臣" />
+          </div>
+          <h3 class="inheritor-name">王再臣 —— 剪纸非遗传承者</h3>
+          <p class="inheritor-skill">传承领域：中国传统剪纸技艺</p>
+          <p class="inheritor-desc">
+            深耕民俗剪纸与创意剪纸领域。坚守剪纸技艺数十年，注重从民间生活、传统民俗中汲取灵感，作品兼具传统纹样的规整典雅与生活气息的鲜活生动，涵盖节庆装饰、民俗仪式、主题创作等多个品类。<br /><br />
+            积极投身剪纸技艺的普及与推广，通过线下教学、社区活动、公益讲座等形式，向青少年及剪纸爱好者传授技艺，同时注重传统纹样的整理与创新，让剪纸艺术适配现代生活场景，延续其文化生命力。
+          </p>
+        </div>
+
+        <!-- 传承人2 -->
+        <div class="inheritor-card">
+          <div class="inheritor-avatar">
+            <img src="image/秦.jpg" alt="刘芳" />
+          </div>
+          <h3 class="inheritor-name">秦治凤 —— 土家花灯非遗传承者</h3>
+          <p class="inheritor-skill">传承领域：土家族传统歌舞艺术 “土家花灯”</p>
+          <p class="inheritor-desc">
+            专注于花灯的表演、编排与传承。自幼受土家花灯文化熏陶，熟练掌握花灯的唱腔、舞步、乐器伴奏等核心技艺，表演风格兼具质朴灵动与民族特色，擅长还原传统花灯剧目，同时融入现代舞台审美进行创新编排。<br /><br />
+            长期致力于土家花灯的活态传承，深入土家族聚居地收集整理濒临失传的花灯曲目与技艺，组建花灯表演团队，参与各类民俗展演与文化交流活动，推动土家花灯走进校园、社区，培养年轻传承人，守护土家族的文化记忆。
+          </p>
+        </div>
+
+        <!-- 传承人3 -->
+        <div class="inheritor-card">
+          <div class="inheritor-avatar">
+            <img src="image/刘.jpg" alt="刘胜杨" />
+          </div>
+          <h3 class="inheritor-name">刘胜杨 —— 土家花灯非遗传承者</h3>
+          <p class="inheritor-skill">传承领域：土家花灯的核心传承者</p>
+          <p class="inheritor-desc">
+            侧重技艺的系统性传承与文化挖掘。深耕土家花灯数十年，全面掌握花灯的唱腔体系、舞蹈套路、道具制作及民俗内涵，对花灯的历史渊源、传承脉络有深入研究，其表演既坚守传统范式，又能结合时代主题进行创新表达，极具感染力。<br /><br />
+            牵头开展土家花灯的非遗保护工作，参与编写相关技艺教材与文化研究资料，建立传承基地，通过“师带徒”模式培养多名年轻传承人，推动土家花灯纳入地方文化保护项目，促进这一土家族特色艺术形式的规范化、可持续传承。
+          </p>
+        </div>
+
+        <!-- 传承人4 -->
+        <div class="inheritor-card">
+          <div class="inheritor-avatar">
+            <img src="image/贵.png" alt="刘贵贤" />
+          </div>
+          <h3 class="inheritor-name">刘贵贤 —— 花烛制作非遗传承者</h3>
+          <p class="inheritor-skill">传承领域：传统花烛制作技艺</p>
+          <p class="inheritor-desc">
+            专注于手工花烛的设计、制作与技艺传承。坚守手工制作范式，熟练掌握花烛的选材、制蜡、塑形、装饰等全流程技艺，其作品工艺精湛，兼具实用价值与审美价值，既保留传统花烛的吉祥寓意与仪式感（如婚嫁、节庆场景使用），又在造型、配色上融入现代审美。<br /><br />
+            致力于保护濒临失传的花烛制作技艺，整理传统配方与制作流程，拒绝工业化替代，坚持手工传承，同时通过参与非遗展会、文化交流活动展示技艺，培养传承人，让这一承载传统礼仪与民俗文化的工艺得以延续，彰显传统手工艺术的独特魅力。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新增：大力宣传模块 -->
+    <section class="promotion" id="promotion">
+      <div class="promotion-container">
+        <h2 class="section-title">大力宣传 · 传播非遗之美</h2>
+        <div class="promotion-content">
+          <!-- 社交媒体宣传图片（横向排列） -->
+          <div class="social-media">
+            <div class="social-item">
+              <img src="image/抖音.jpg" alt="思南抖音宣传" class="social-img" />
+              <p class="social-desc">关注思南融媒</p>
+            </div>
+            <div class="social-item">
+              <img src="image/微信.jpg" alt="思南微信宣传" class="social-img" />
+              <p class="social-desc">关注明珠思南</p>
+            </div>
+          </div>
+
+          <!-- 宣传视频（横向） -->
+          <div class="promotion-video-container">
+            <video id="promotion-video" poster="image/视频3.jpg" preload="none">
+              <source src="video/宣传.mp4" type="video/mp4" />
+              您的浏览器不支持HTML5视频播放
+            </video>
+            <div class="video-overlay" id="promotion-video-overlay">
+              <div class="video-play-btn">
+                <i class="fa-solid fa-play"></i>
+              </div>
+            </div>
+            <!-- 视频控制栏 -->
+            <div class="video-controls">
+              <div class="progress-container" id="promotion-progress-container">
+                <div class="progress-bar" id="promotion-progress-bar"></div>
+              </div>
+              <div class="volume-control">
+                <i
+                  class="fa-solid fa-volume-high"
+                  id="promotion-volume-icon"
+                ></i>
+                <input
+                  type="range"
+                  id="promotion-volume-slider"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value="1"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 传承与保护 - 新增图片和相关内容 -->
+    <section class="protection" id="protection">
+      <div class="protection-container">
+        <h2 class="section-title">传承保护 · 焕新活力</h2>
+        <div class="protection-list">
+          <!-- 左侧两个项目 -->
+          <div class="protection-col">
+            <!-- 举措1：非遗进校园 -->
+            <div class="protection-item">
+              <div class="protection-item-img">
+                <img src="image/传承1.jpg" alt="非遗进校园课堂" />
+              </div>
+              <i class="fa-solid fa-school"></i>
+              <h3 class="protection-item-title">非遗“出圈”进课堂</h3>
+              <p class="protection-item-desc">
+                据《贵州思南：非遗“出圈”进课堂
+                研学“破壁”焕新光》报道，思南县在20所中小学开设花灯戏、傩戏、刺绣等非遗兴趣班，邀请非遗传承人走进课堂授课，编写专属非遗校本教材，创新研学课程模式，让青少年近距离接触、学习本土非遗文化，实现非遗教育从“课堂”到“生活”的破壁。
+              </p>
+            </div>
+
+            <!-- 举措2：非遗工坊建设 -->
+            <div class="protection-item">
+              <div class="protection-item-img">
+                <img src="image/传承2.jpg" alt="非遗工坊制作场景" />
+              </div>
+              <i class="fa-solid fa-industry"></i>
+              <h3 class="protection-item-title">“非遗+”模式传承文化基因</h3>
+              <p class="protection-item-desc">
+                铜仁日报报道的思南“非遗+”模式成为文化传承新路径，全县已建成思南花烛、仡佬族服饰等非遗工坊8个，通过“传承人+工坊+农户”模式，带动200余名村民就业，将非遗技艺转化为富民产业，让传统技艺在生产实践中活态传承。
+              </p>
+            </div>
+          </div>
+
+          <!-- 中间竖版视频（水平窄，竖直宽） -->
+          <div class="protection-video-container">
+            <video
+              class="protection-video"
+              id="protection-video"
+              poster="image/视频2.jpg"
+              preload="none"
+            >
+              <source src="video/央视报道非遗巡游.mp4" type="video/mp4" />
+              您的浏览器不支持HTML5视频播放
+            </video>
+            <div class="video-overlay" id="protection-video-overlay">
+              <div class="video-play-btn">
+                <i class="fa-solid fa-play"></i>
+              </div>
+            </div>
+            <!-- 视频控制栏 -->
+            <div class="video-controls">
+              <div
+                class="progress-container"
+                id="protection-progress-container"
+              >
+                <div class="progress-bar" id="protection-progress-bar"></div>
+              </div>
+              <div class="volume-control">
+                <i
+                  class="fa-solid fa-volume-high"
+                  id="protection-volume-icon"
+                ></i>
+                <input
+                  type="range"
+                  id="protection-volume-slider"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value="1"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- 右侧两个项目 -->
+          <div class="protection-col">
+            <!-- 举措3：非遗数字化保护 -->
+            <div class="protection-item">
+              <div class="protection-item-img">
+                <img src="image/数字化.jpg" alt="非遗数字化采集" />
+              </div>
+              <i class="fa-solid fa-database"></i>
+              <h3 class="protection-item-title">数字化保护留存文化记忆</h3>
+              <p class="protection-item-desc">
+                结合 “互联网 +”
+                技术搭建数字化平台，同时辅以政策、人才、社会参与等多方面保障，可实现傩戏的商业化润化，填补传承人才缺失的短板，为这一非遗项目注入新活力，助力其在现代社会中实现有效传承与发展。
+              </p>
+            </div>
+
+            <!-- 举措4：非遗文旅融合 -->
+            <div class="protection-item">
+              <div class="protection-item-img">
+                <img src="image/传承3.jpg" alt="非遗文旅融合景区" />
+              </div>
+              <i class="fa-solid fa-map-location-dot"></i>
+              <h3 class="protection-item-title">文旅融合活化非遗资源</h3>
+              <p class="protection-item-desc">
+                思南县将非遗元素融入乌江喀斯特国家地质公园、思南古城等旅游景区，打造非遗主题民宿、非遗体验工坊、非遗演艺秀等文旅产品，让游客在游览过程中沉浸式体验土家花灯、傩戏、剪纸等非遗技艺，实现非遗保护与文旅发展的双向赋能。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 互动板块 -->
+    <section class="interaction" id="interaction">
+      <h2 class="section-title">互动问答 · 了解非遗</h2>
+      <div class="quiz-container">
+        <div class="quiz-question">
+          思南土家花灯戏属于哪一级别的非物质文化遗产？
+        </div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-correct="false">A. 市级</div>
+          <div class="quiz-option" data-correct="true">B. 国家级</div>
+          <div class="quiz-option" data-correct="false">C. 省级</div>
+          <div class="quiz-option" data-correct="false">D. 世界级</div>
+        </div>
+        <button id="quiz-btn">提交答案</button>
+        <div id="quiz-result"></div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3>关于思南非遗</h3>
+          <p>
+            思南县地处乌江中下游，是多民族聚居区，拥有丰富的非物质文化遗产资源。我们致力于非遗的保护、传承与创新，让千年文脉在新时代焕发生机。
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>联系方式</h3>
+          <p><i class="fa-solid fa-phone"></i> 咨询电话：19862219150</p>
+          <p><i class="fa-solid fa-envelope"></i> 邮箱：snnfyjy@163.com</p>
+        </div>
+        <div class="footer-col">
+          <h3>关注我们</h3>
+          <div class="social">
+            <a href="#"><i class="fa-brands fa-weixin"></i></a>
+            <a href="#"><i class="fa-brands fa-douyin"></i></a>
+            <a href="#"><i class="fa-brands fa-weibo"></i></a>
+            <a href="#"><i class="fa-brands fa-video"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 周艺涵 版权所有</p>
+      </div>
+    </footer>
+
+    <!-- JavaScript 脚本 -->
+    <script>
+      // 导航栏移动端切换
+      const menuBtn = document.querySelector(".menu-btn");
+      const navMenu = document.querySelector(".nav-menu");
+
+      menuBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        menuBtn.innerHTML = navMenu.classList.contains("active")
+          ? '<i class="fa-solid fa-xmark"></i>'
+          : '<i class="fa-solid fa-bars"></i>';
+      });
+
+      // 导航链接激活状态
+      const navLinks = document.querySelectorAll(".nav-menu a");
+      const sections = document.querySelectorAll("section");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - 100) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // 轮播图功能
+      const slides = document.querySelectorAll(".carousel-slide");
+      const indicators = document.querySelectorAll(".indicator");
+      const prevThumbnail = document.getElementById("prev-thumbnail");
+      const nextThumbnail = document.getElementById("next-thumbnail");
+      let currentSlide = 0;
+
+      // 轮播图片数组（用于缩略图切换）
+      const slideImages = [
+        "image/首1.jpg",
+        "image/首2.jpg",
+        "image/首3.jpg",
+        "image/首4.jpg",
+      ];
+
+      // 切换轮播图
+      function showSlide(index) {
+        // 处理边界
+        if (index >= slides.length) currentSlide = 0;
+        if (index < 0) currentSlide = slides.length - 1;
+
+        // 隐藏所有幻灯片
+        slides.forEach((slide) => slide.classList.remove("active"));
+        indicators.forEach((indicator) => indicator.classList.remove("active"));
+
+        // 显示当前幻灯片
+        slides[currentSlide].classList.add("active");
+        indicators[currentSlide].classList.add("active");
+
+        // 更新缩略图
+        prevThumbnail.querySelector(".thumbnail-img").src =
+          slideImages[
+            currentSlide === 0 ? slides.length - 1 : currentSlide - 1
+          ];
+        nextThumbnail.querySelector(".thumbnail-img").src =
+          slideImages[
+            currentSlide === slides.length - 1 ? 0 : currentSlide + 1
+          ];
+      }
+
+      // 指示器点击事件
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+          currentSlide = index;
+          showSlide(currentSlide);
+        });
+      });
+
+      // 缩略图点击事件
+      prevThumbnail.addEventListener("click", () => {
+        currentSlide--;
+        showSlide(currentSlide);
+      });
+
+      nextThumbnail.addEventListener("click", () => {
+        currentSlide++;
+        showSlide(currentSlide);
+      });
+
+      // 自动轮播
+      setInterval(() => {
+        currentSlide++;
+        showSlide(currentSlide);
+      }, 5000);
+
+      // 视频播放控制（概述视频）
+      const video = document.getElementById("heritage-video");
+      const videoOverlay = document.getElementById("video-overlay");
+      const progressBar = document.getElementById("progress-bar");
+      const progressContainer = document.getElementById("progress-container");
+      const volumeSlider = document.getElementById("volume-slider");
+      const volumeIcon = document.getElementById("volume-icon");
+
+      // 播放/暂停视频
+      function toggleVideoPlay() {
+        if (video.paused) {
+          video.play();
+          videoOverlay.style.opacity = 0;
+        } else {
+          video.pause();
+          videoOverlay.style.opacity = 1;
+        }
+      }
+
+      // 点击播放/暂停
+      videoOverlay.addEventListener("click", toggleVideoPlay);
+      video.addEventListener("click", toggleVideoPlay);
+
+      // 更新进度条
+      video.addEventListener("timeupdate", () => {
+        const progress = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = `${progress}%`;
+      });
+
+      // 点击进度条跳转
+      progressContainer.addEventListener("click", (e) => {
+        const progressWidth = progressContainer.clientWidth;
+        const clickX = e.offsetX;
+        const duration = video.duration;
+        video.currentTime = (clickX / progressWidth) * duration;
+      });
+
+      // 音量控制
+      volumeSlider.addEventListener("input", () => {
+        video.volume = volumeSlider.value;
+        // 更新音量图标
+        if (video.volume === 0) {
+          volumeIcon.className = "fa-solid fa-volume-mute";
+        } else if (video.volume < 0.5) {
+          volumeIcon.className = "fa-solid fa-volume-low";
+        } else {
+          volumeIcon.className = "fa-solid fa-volume-high";
+        }
+      });
+
+      // 视频结束重置
+      video.addEventListener("ended", () => {
+        video.currentTime = 0;
+        videoOverlay.style.opacity = 1;
+      });
+
+      // 大力宣传模块视频控制
+      const promotionVideo = document.getElementById("promotion-video");
+      const promotionOverlay = document.getElementById(
+        "promotion-video-overlay"
+      );
+      const promotionProgressBar = document.getElementById(
+        "promotion-progress-bar"
+      );
+      const promotionProgressContainer = document.getElementById(
+        "promotion-progress-container"
+      );
+      const promotionVolumeSlider = document.getElementById(
+        "promotion-volume-slider"
+      );
+      const promotionVolumeIcon = document.getElementById(
+        "promotion-volume-icon"
+      );
+
+      function togglePromotionVideo() {
+        if (promotionVideo.paused) {
+          promotionVideo.play();
+          promotionOverlay.style.opacity = 0;
+        } else {
+          promotionVideo.pause();
+          promotionOverlay.style.opacity = 1;
+        }
+      }
+
+      promotionOverlay.addEventListener("click", togglePromotionVideo);
+      promotionVideo.addEventListener("click", togglePromotionVideo);
+
+      promotionVideo.addEventListener("timeupdate", () => {
+        const progress =
+          (promotionVideo.currentTime / promotionVideo.duration) * 100;
+        promotionProgressBar.style.width = `${progress}%`;
+      });
+
+      promotionProgressContainer.addEventListener("click", (e) => {
+        const progressWidth = promotionProgressContainer.clientWidth;
+        const clickX = e.offsetX;
+        const duration = promotionVideo.duration;
+        promotionVideo.currentTime = (clickX / progressWidth) * duration;
+      });
+
+      promotionVolumeSlider.addEventListener("input", () => {
+        promotionVideo.volume = promotionVolumeSlider.value;
+        if (promotionVideo.volume === 0) {
+          promotionVolumeIcon.className = "fa-solid fa-volume-mute";
+        } else if (promotionVideo.volume < 0.5) {
+          promotionVolumeIcon.className = "fa-solid fa-volume-low";
+        } else {
+          promotionVolumeIcon.className = "fa-solid fa-volume-high";
+        }
+      });
+
+      promotionVideo.addEventListener("ended", () => {
+        promotionVideo.currentTime = 0;
+        promotionOverlay.style.opacity = 1;
+      });
+
+      // 传承保护模块视频控制
+      const protectionVideo = document.getElementById("protection-video");
+      const protectionOverlay = document.getElementById(
+        "protection-video-overlay"
+      );
+      const protectionProgressBar = document.getElementById(
+        "protection-progress-bar"
+      );
+      const protectionProgressContainer = document.getElementById(
+        "protection-progress-container"
+      );
+      const protectionVolumeSlider = document.getElementById(
+        "protection-volume-slider"
+      );
+      const protectionVolumeIcon = document.getElementById(
+        "protection-volume-icon"
+      );
+
+      function toggleProtectionVideo() {
+        if (protectionVideo.paused) {
+          protectionVideo.play();
+          protectionOverlay.style.opacity = 0;
+        } else {
+          protectionVideo.pause();
+          protectionOverlay.style.opacity = 1;
+        }
+      }
+
+      protectionOverlay.addEventListener("click", toggleProtectionVideo);
+      protectionVideo.addEventListener("click", toggleProtectionVideo);
+
+      protectionVideo.addEventListener("timeupdate", () => {
+        const progress =
+          (protectionVideo.currentTime / protectionVideo.duration) * 100;
+        protectionProgressBar.style.width = `${progress}%`;
+      });
+
+      protectionProgressContainer.addEventListener("click", (e) => {
+        const progressWidth = protectionProgressContainer.clientWidth;
+        const clickX = e.offsetX;
+        const duration = protectionVideo.duration;
+        protectionVideo.currentTime = (clickX / progressWidth) * duration;
+      });
+
+      protectionVolumeSlider.addEventListener("input", () => {
+        protectionVideo.volume = protectionVolumeSlider.value;
+        if (protectionVideo.volume === 0) {
+          protectionVolumeIcon.className = "fa-solid fa-volume-mute";
+        } else if (protectionVideo.volume < 0.5) {
+          protectionVolumeIcon.className = "fa-solid fa-volume-low";
+        } else {
+          protectionVolumeIcon.className = "fa-solid fa-volume-high";
+        }
+      });
+
+      protectionVideo.addEventListener("ended", () => {
+        protectionVideo.currentTime = 0;
+        protectionOverlay.style.opacity = 1;
+      });
+
+      // 互动问答功能
+      const quizOptions = document.querySelectorAll(".quiz-option");
+      const quizBtn = document.getElementById("quiz-btn");
+      const quizResult = document.getElementById("quiz-result");
+
+      // 点击选项添加深色选中效果
+      quizOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+          // 移除所有选项的选中状态
+          quizOptions.forEach((opt) =>
+            opt.classList.remove("selected", "correct", "wrong")
+          );
+          // 给当前选项添加选中状态
+          option.classList.add("selected");
+        });
+      });
+
+      // 提交答案
+      quizBtn.addEventListener("click", () => {
+        let selectedOption = null;
+
+        // 找到选中的选项
+        quizOptions.forEach((option) => {
+          if (option.classList.contains("selected")) {
+            selectedOption = option;
+          }
+        });
+
+        if (!selectedOption) {
+          quizResult.textContent = "请先选择一个答案";
+          quizResult.style.color = "#d13838";
+          return;
+        }
+
+        // 验证答案
+        quizOptions.forEach((option) => {
+          option.classList.remove("selected");
+          if (option.dataset.correct === "true") {
+            option.classList.add("correct");
+          } else if (option === selectedOption) {
+            option.classList.add("wrong");
+          }
+        });
+
+        // 显示结果
+        if (selectedOption.dataset.correct === "true") {
+          quizResult.textContent = "恭喜你，回答正确！";
+          quizResult.style.color = "#155724";
+        } else {
+          quizResult.textContent = "回答错误，正确答案是B选项";
+          quizResult.style.color = "#721c24";
+        }
+      });
+
+      // 滚动到指定区域
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          window.scrollTo({
+            top: section.offsetTop - 80,
+            behavior: "smooth",
+          });
+
+          // 移动端菜单关闭
+          if (navMenu.classList.contains("active")) {
+            navMenu.classList.remove("active");
+            menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+          }
+        }
+      }
+
+      // 导航链接点击滚动
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const sectionId = link.getAttribute("href").substring(1);
+          scrollToSection(sectionId);
+        });
+      });
+    </script>
+  </body>
+</html>
